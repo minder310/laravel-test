@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 use Pdo\Mysql;
-
+// 資料庫連線
 return [
 
     /*

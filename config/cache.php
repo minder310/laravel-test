@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-
+//快取
 return [
 
     /*

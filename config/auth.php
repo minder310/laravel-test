@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-
+// 登入與使用者驗證
 return [
 
     /*
