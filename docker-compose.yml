@@ -10,13 +10,14 @@ services:
       - php
 
   php:
+    # PHP 容器由本專案的 Dockerfile 建置。
     build:
       context: .
       dockerfile: docker/php/Dockerfile
+    # 將目前專案掛載到容器，修改程式後不必重新建置映像。
     volumes:
       - .:/var/www/html
-    environment:
-      - APP_ENV=local
+    # 不在這裡固定 APP_ENV，平常由 .env 決定，測試時則可切換成 testing。
 
   mysql:
     image: mysql:8.0
