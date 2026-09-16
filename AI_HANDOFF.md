@@ -1,6 +1,6 @@
 # Laravel 學習專案：AI 接續說明
 
-> 最後更新日期：2026-08-28（Asia/Taipei）
+> 最後更新日期：2026-09-09（Asia/Taipei）
 
 這份文件提供給新的 AI 助手閱讀。開始協助前，請先完整讀完本文件，再查看使用者目前提問涉及的程式碼。
 
@@ -264,6 +264,14 @@ GET /login
 如果使用者改問其他問題，優先回答當前問題，不必強迫按照原定課程進度。
 
 ## 十、學習進度日誌
+
+### 2026-09-09
+
+- 今天理解／完成：開始追蹤 `GET /login → LoginController::create() → view('auth.login') → login.blade.php`；釐清 `guest` 中介層不是只檢查 Cookie 有沒有值，而是透過 Cookie 對應的 Session 與 Auth 判斷是否有有效登入使用者；開始理解 `Route::` 的方法分類、`group()` 與匿名函式。
+- 修改檔案：本次只更新 `AI_HANDOFF.md` 學習進度，未修改 Laravel 功能程式。
+- 驗證結果：未修改功能，因此未執行測試。
+- 目前停在：正在理解 `Route::get()`、`Route::post()`、`Route::middleware()`、`group()`、`function () {}`，以及 `::` 和 `->` 的差異。
+- 下一步：由使用者以自己的話拆解 `Route::middleware('guest')->group(function () { ... });`；確認後再進入 `POST /login` 如何把表單資料交給 `LoginController::store()`。
 
 ### 2026-08-28
 
