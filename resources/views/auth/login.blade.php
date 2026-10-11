@@ -9,74 +9,116 @@
     {{-- 瀏覽器分頁上顯示的標題。 --}}
     <title>登入</title>
     <style>
-        /* 讓元素設定的寬高包含內距與邊框，比較容易控制版面。 */
         * { box-sizing: border-box; }
-        /* 設定整個頁面的置中方式、底色與預設文字樣式。 */
+        :root {
+            --orange-950: #431407;
+            --orange-800: #9a3412;
+            --orange-700: #c2410c;
+            --orange-500: #f97316;
+            --orange-200: #fed7aa;
+        }
         body {
-            /* 移除瀏覽器預設的頁面外距。 */
             margin: 0;
-            /* 頁面最少要和整個瀏覽器視窗一樣高。 */
             min-height: 100vh;
-            /* 使用格線排版，方便將登入框水平及垂直置中。 */
             display: grid;
             place-items: center;
-            /* 小螢幕時讓登入框與視窗邊緣保留距離。 */
             padding: 24px;
-            /* 使用作業系統提供的預設介面字型。 */
             font-family: system-ui, sans-serif;
-            /* 設定淺灰色頁面背景。 */
-            background: #f4f6f8;
-            /* 設定主要文字顏色。 */
-            color: #1f2937;
+            background:
+                radial-gradient(circle at 18% 16%, rgb(255 255 255 / 58%) 0 10%, transparent 32%),
+                radial-gradient(circle at 84% 82%, rgb(194 65 12 / 18%) 0 12%, transparent 36%),
+                linear-gradient(145deg, #fff7ed 0%, #fed7aa 46%, #fb923c 100%);
+            color: var(--orange-950);
         }
-        /* main 是白色的登入卡片。 */
         main {
-            /* 最大寬度 420px，小螢幕時則使用全部可用寬度。 */
             width: min(100%, 420px);
-            /* 登入卡片內容與邊緣的距離。 */
-            padding: 32px;
-            /* 將卡片四角變圓。 */
-            border-radius: 12px;
-            background: white;
-            /* 加上淡陰影，讓卡片與背景分離。 */
-            box-shadow: 0 12px 30px rgb(0 0 0 / 8%);
+            padding: 34px 36px 36px;
+            border: 1px solid rgb(255 255 255 / 72%);
+            border-radius: 24px;
+            background: rgb(255 250 244 / 92%);
+            box-shadow: 0 24px 70px rgb(124 45 18 / 22%);
+            backdrop-filter: blur(10px);
         }
-        /* 調整登入標題下方距離。 */
-        h1 { margin: 0 0 24px; }
-        /* 每個欄位標題獨占一行並使用較粗文字。 */
-        label { display: block; margin-top: 16px; font-weight: 600; }
-        /* 三個輸入欄位共用的外觀。 */
+        .brand { margin-bottom: 24px; text-align: center; }
+        .brand-icon {
+            display: block;
+            width: 104px;
+            height: 104px;
+            margin: -4px auto 12px;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 14px rgb(194 65 12 / 22%));
+        }
+        h1 {
+            margin: 0;
+            color: var(--orange-950);
+            font-size: 1.75rem;
+            line-height: 1.2;
+            letter-spacing: .04em;
+        }
+        .subtitle { margin: 8px 0 0; color: var(--orange-800); font-size: .92rem; }
+        label {
+            display: block;
+            margin-top: 16px;
+            color: #7c2d12;
+            font-size: .9rem;
+            font-weight: 700;
+        }
         input {
             width: 100%;
-            margin-top: 6px;
-            padding: 11px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 7px;
+            margin-top: 7px;
+            padding: 12px 14px;
+            border: 1px solid var(--orange-200);
+            border-radius: 11px;
+            background: white;
+            color: var(--orange-950);
             font: inherit;
+            transition: border-color .2s, box-shadow .2s;
         }
-        /* 使用鍵盤或滑鼠選到輸入框時，顯示清楚的藍色外框。 */
-        input:focus { outline: 2px solid #93c5fd; border-color: #2563eb; }
-        /* 登入按鈕的大小、顏色與文字設定。 */
+        input:focus {
+            outline: none;
+            border-color: var(--orange-500);
+            box-shadow: 0 0 0 4px rgb(249 115 22 / 16%);
+        }
         button {
             width: 100%;
             margin-top: 24px;
             padding: 12px;
             border: 0;
-            border-radius: 7px;
-            background: #2563eb;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-700));
             color: white;
             font: inherit;
             font-weight: 700;
             cursor: pointer;
+            box-shadow: 0 10px 22px rgb(234 88 12 / 25%);
+            transition: transform .2s, box-shadow .2s;
         }
-        /* 驗證或登入失敗訊息使用紅色。 */
-        .error { margin: 12px 0 0; color: #b91c1c; }
+        button:hover { transform: translateY(-1px); box-shadow: 0 13px 26px rgb(234 88 12 / 32%); }
+        button:focus-visible { outline: 3px solid var(--orange-200); outline-offset: 3px; }
+        .error {
+            margin: 0 0 12px;
+            padding: 10px 12px;
+            border: 1px solid #fecaca;
+            border-radius: 10px;
+            background: #fef2f2;
+            color: #b91c1c;
+            font-size: .9rem;
+        }
+        @media (max-width: 480px) {
+            body { padding: 16px; }
+            main { padding: 28px 22px 26px; border-radius: 20px; }
+            .brand-icon { width: 90px; height: 90px; }
+        }
     </style>
 </head>
 <body>
     {{-- main 包住這個頁面的主要內容。 --}}
     <main>
-        <h1>店家登入</h1>
+        <header class="brand">
+            <img class="brand-icon" src="{{ asset('images/shop-sun-login-icon.png') }}" alt="暖陽店舖圖標">
+            <h1>店家登入</h1>
+            <p class="subtitle">歡迎回來，開始管理你的店舖</p>
+        </header>
 
         {{-- Laravel 若帶回任何驗證錯誤，就顯示第一則錯誤訊息。 --}}
         @if ($errors->any())
